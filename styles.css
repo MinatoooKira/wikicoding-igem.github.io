@@ -132,7 +132,7 @@ body.day-mode #background-video-day {
 
 .sidebar ul li a:hover {
     transform: scale(1.2) translateX(10px); /* 悬停时放大并向右移动 */
-    background-color: #57575717;
+    background-color: #57575700;
 }
 
 /* 内容区域样式 */
