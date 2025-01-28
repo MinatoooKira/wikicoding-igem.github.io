@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- 夜间模式背景视频 -->
+  <video autoplay muted loop id="background-video-night">
+    <source src="./assets/night-mode-video.mp4" type="video/mp4">
+   您的浏览器不支持视频播放。
+  </video>
+
+  <!-- 日间模式背景视频 -->
+  <video autoplay muted loop id="background-video-day">
+   <source src="./assets/day-mode-video.mp4" type="video/mp4">
+   您的浏览器不支持视频播放。
+  </video>
+
+  <!-- 上边栏 -->
+  <header class="topbar">
+    <img src="./assets/logo.png" alt="Here is a img" class="logo" onclick="alert('Welcome!')">
+    <h1>Contact</h1>
+  </header>
+
+  <!-- 侧边栏 -->
+  <div class="sidebar" id="sidebar">
+    <button class="toggle-btn" id="toggle-btn" aria-label="Toggle sidebar">☰</button>
+    <ul>
+      <li><a href="index.html">首页</a></li>
+      <li><a href="contact.html">联系</a></li>
+    </ul>
+  </div>
+  <br>
+  <br>
+  <br>
+  <!-- 主内容区域 -->
+  <div class="content">
+    <h1>您可以通过以下方式联系我</h1>
+    <a href="https://space.bilibili.com/381987948?spm_id_from=333.1007.0.0">我的B站主页</a>
+    <br>
+    <a href="https://steamcommunity.com/id/minatoookira/">我的steam个人资料</a>
+    <br>
+    <span>我的邮箱：</span>
+    <span style="color: #0fa09e;">2304856691@qq.com</span>
+    <span style="color: #0fa09e;">liufsh2024@shanghaitech.edu.cn</span>
+  </div>
+  <div class="content">
+    <h1>对该网页有任何疑问或建议欢迎联系邮箱</h1>
+    <span style="color: #0fa09e;">liufsh2024@shanghaitech.edu.cn</span>
+  </div>
+
+  <!-- 切换日间/夜间模式按钮 -->
+  <button id="mode-toggle-btn" class="mode-toggle-btn">🌙</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

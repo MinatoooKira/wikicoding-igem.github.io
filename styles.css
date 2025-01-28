@@ -1,0 +1,309 @@
+/* 样式文件: styles.css */
+
+/* 使页面充满屏幕 */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden; /* 防止水平滚动 */
+    scroll-behavior: smooth; /* 平滑滚动 */
+    /* background-image: url('./assets/loading-night.png');  */
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed;
+}
+
+/* 设置夜间模式背景视频 */
+#background-video-night {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 让视频保持覆盖整个背景 */
+    z-index: 1; /* 使视频处于最底层 */
+}
+
+/* 设置日间模式背景视频 */
+#background-video-day {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 让视频保持覆盖整个背景 */
+    z-index: 1; /* 使视频处于最底层 */
+    display: none; /* 默认隐藏 */
+}
+
+/* 夜间模式显示夜间背景视频 */
+body.night-mode #background-video-night {
+    display: block;
+}
+
+body.night-mode #background-video-day {
+    display: none;
+}
+
+/* 日间模式显示日间背景视频 */
+body.day-mode #background-video-night {
+    display: none;
+}
+
+body.day-mode #background-video-day {
+    display: block;
+}
+
+/* 上边栏样式 */
+.topbar {
+    height: 60px; /* 设置上边栏的高度 */
+    background-color: #000000e4; /* 上边栏背景色 */
+    color: white; /* 文字颜色 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 12; /* 设置上边栏位于其他元素上方 */
+}
+
+.topbar h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.topbar .logo {
+    left: 8px;
+    top: 17px;
+    position: fixed;
+    height: 30px;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+    height: 100%;
+    width: 70px; /* 初始宽度为折叠状态 */
+    position: fixed;
+    top: 60px; /* 将侧边栏位置下移，避免遮挡上边栏 */
+    left: 0;
+    background-color: #060912; /* 侧边栏背景色 */
+    color: white;
+    padding-top: 20px;
+    transition: width 0.3s ease; /* 过渡动画 */
+    z-index: 5; /* 将侧边栏放到上边栏下方 */
+}
+
+/* 鼠标悬停时展开侧边栏 */
+.sidebar:hover {
+    width: 200px; /* 鼠标悬停时展开为 200px */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 50px; /* 为了避免与按钮重叠 */
+}
+
+.sidebar ul li {
+    padding: 8px 16px;
+    text-align: left;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateX(-20px); /* 初始位置稍微偏移 */
+}
+
+/* 展开时显示 li 元素 */
+.sidebar:hover ul li {
+    opacity: 1; /* 鼠标悬停时显示 */
+    transform: translateX(0); /* 移动到正常位置 */
+    transition-delay: calc(0.1s * var(--i)); /* 交错延迟 */
+}
+
+.sidebar ul li a {
+    display: inline-block;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    transform: scale(1.2) translateX(10px); /* 悬停时放大并向右移动 */
+    background-color: #57575717;
+}
+
+/* 内容区域样式 */
+.content {
+    color: white;
+    margin-left: 120px; /* 让内容区域不被侧边栏遮挡 */
+    margin-top: 50px; /* 给内容区域留出上边栏的高度，确保不被遮挡 */
+    margin-right: 70px; /* 留出右边距，确保右边缘不会被遮挡 */
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.326); /* 半透明背景 */
+    border-radius: 8px; /* 圆角边框 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+    width: calc(100% - 200px); /* 减去侧边栏和右边距，确保宽度合适 */
+    overflow-y: auto; /* 允许纵向滚动 */
+    position: relative; /* 使内容区域不被其他元素覆盖 */
+    z-index: 2; /* 保证内容区域位于侧边栏和上边栏之下 */
+    padding-top: 20px; /* 为内容区域添加顶部间距 */
+    padding-bottom: 40px;
+}
+
+.content a{
+    text-decoration: none;
+    color: #0fa09e;
+}
+
+.content a:hover{
+    text-decoration: underline;
+    color: #0fa09e;
+}
+
+/* 控制按钮样式，增大折叠按钮 */
+.toggle-btn {
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    background-color: #33333300;
+    color: white;
+    border: none;
+    padding: 15px 15px; /* 增大按钮 */
+    font-size: 24px; /* 增大字体 */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.toggle-btn:hover {
+    background-color: #44444400;
+}
+
+.toggle-btn:active {
+    transform: scale(0.95);
+}
+
+.toggle-btn:focus {
+    outline: none;
+}
+
+/* 日间模式和夜间模式样式 */
+:root {
+    --background-day: url('./assets/loading-day.png');
+    --background-night: url('./assets/loading-night.png');
+    --text-color-day: #333;
+    --text-color-night: #ffffff;
+    --sidebar-bg-day: #e1b3b3ab;
+    --sidebar-bg-night: #060912;
+    --content-bg-day: rgba(255, 255, 255, 0.399);
+    --content-bg-night: rgba(0, 0, 0, 0.326)
+}
+
+/* 日间模式 */
+body.day-mode {
+    background-image: var(--background-day);
+    color: var(--text-color-day);
+}
+
+body.day-mode #background-video {
+    display: none; /* 隐藏视频背景 */
+}
+
+body.day-mode .topbar {
+    background-color: #fff; /* 上边栏背景色 */
+    color: var(--text-color-day); /* 上边栏文字颜色 */
+}
+
+body.day-mode .sidebar {
+    background-color: var(--sidebar-bg-day); /* 侧边栏背景色 */
+    color: var(--text-color-day); /* 侧边栏文字颜色 */
+}
+
+body.day-mode .content {
+    background-color: var(--content-bg-day); /* 半透明框背景色 */
+    color: var(--text-color-day); /* 文字颜色 */
+}
+
+/* 夜间模式 */
+body.night-mode {
+    background-image: var(--background-night);
+    color: var(--text-color-night);
+}
+
+body.night-mode .topbar {
+    background-color: #000000e4; /* 上边栏背景色 */
+    color: var(--text-color-night); /* 上边栏文字颜色 */
+}
+
+body.night-mode .sidebar {
+    background-color: var(--sidebar-bg-night); /* 侧边栏背景色 */
+    color: var(--text-color-night); /* 侧边栏文字颜色 */
+}
+
+body.night-mode .content {
+    background-color: var(--content-bg-night); /* 半透明框背景色 */
+    color: var(--text-color-night); /* 文字颜色 */
+}
+
+/* 模式切换按钮样式 */
+.mode-toggle-btn {
+    position: fixed;
+    background-color: #333;
+    color: white;
+    bottom: 20px;
+    right: 20px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+.mode-toggle-btn:hover {
+    background-color: #444;
+}
+
+body.night-mode .mode-toggle-btn {
+    background-color: #333;
+    color: white;
+}
+
+body.night-mode .mode-toggle-btn:hover {
+    background-color: #444;
+}
+
+body.day-mode .mode-toggle-btn {
+    background-color: #ffffff;
+    color: #333;
+}
+
+body.day-mode .mode-toggle-btn:hover {
+    background-color: #d2d2d2;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 50px; /* 移动设备上侧边栏更窄 */
+    }
+
+    .sidebar:hover {
+        width: 150px; /* 展开时宽度较小 */
+    }
+
+    .content {
+        margin-left: 70px; /* 调整内容区域边距 */
+        width: calc(100% - 90px); /* 调整宽度 */
+    }
+
+    /* #background-video {
+        display: none; 
+    } */
+
+    body {
+        background-image: url('./assets/loading-night.png'); /* 备用图片 */
+    }
+}
