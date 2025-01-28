@@ -299,9 +299,9 @@ body.day-mode .mode-toggle-btn:hover {
         width: calc(100% - 90px); /* 调整宽度 */
     }
 
-    /* #background-video {
+    #background-video {
         display: none; 
-    } */
+    } 
 
     body {
         background-image: url('./assets/loading-night.png'); /* 备用图片 */
